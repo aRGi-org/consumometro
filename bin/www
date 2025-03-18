@@ -1,0 +1,168 @@
+global.appBasePath = __dirname + "/../";
+require('dotenv').config({ path: appBasePath + '.env' });
+
+global.appName = process.env.APP_NAME;
+global.appVersion = process.env.APP_VERSION;
+global.appEnvironment = process.env.APP_ENV;
+global.emailHost = process.env.MAIL_HOST;
+global.emailPort = process.env.MAIL_HOST_PORT;
+global.emailAuth = process.env.MAIL_HOST_USER;
+global.emailSecret = process.env.MAIL_HOST_SECRET;
+global.emailSender = process.env.MAIL_SENDER;
+global.wwwProtocol = process.env.PROTO;
+global.wwwAddress = process.env.WWW;
+global.logStream;
+
+const logger = require(appBasePath + 'controllers/logger');
+var streamName = 'consumometro.log';
+var streamPath = appBasePath + 'logs';
+
+logger.logInit(streamPath,streamName);
+
+const url = require('url');
+var http = require('http');
+var https = require('https');
+const needle = require('needle');
+const nodemailer = require('nodemailer');
+const filesys = require('fs');
+const path = require('path');
+const sqlite3 = require("sqlite3").verbose();
+const { open } = require('sqlite');
+//var debug = require('debug')('consumometro:server');
+const dbase = require(appBasePath + 'controllers/db');
+
+const app = require(appBasePath + "app");
+
+const langs = require(appBasePath + "lang/lang");
+
+const PORT = process.env.HTTP_PORT || 8070;
+const SECPORT = process.env.HTTPS_PORT || 8071;
+
+const CERTPATH = process.env.CERTPATH + "/" || "./";
+
+if (wwwProtocol == "HTTP")
+	global.wwwPort = process.env.HTTP_PORT || 8070;
+else	
+	global.wwwPort = process.env.HTTPS_PORT || 8071;
+
+global.langId = process.env.APP_LANG;
+
+// server certificate
+var privateKey  = filesys.readFileSync(appBasePath + "keys/privkey.pem", 'utf8');
+var certificate = filesys.readFileSync(appBasePath + "keys/fullchain.pem", 'utf8');
+var credentials = {key: privateKey, cert: certificate};
+
+/*
+	Event listener for HTTP server "error" event.
+*/
+function onError(error) {
+	if (error.syscall !== 'listen') {
+		throw error;
+	}
+
+	var bind = typeof PORT === 'string' ? 'Pipe ' + PORT : 'Port ' + PORT;
+
+	// handle specific listen errors with friendly messages
+	switch (error.code) {
+		case 'EACCES':
+			logger.logEvent("ERROR", "Using port " + bind + ' requires elevated privileges' );
+			process.exit(1);
+			break;
+		case 'EADDRINUSE':
+			logger.logEvent("ERROR", "Port " + bind + ' is already in use');
+			process.exit(1);
+			break;
+		default:
+			throw error;
+	}
+}
+
+/*
+	Event listener for HTTP server "listening" event.
+*/
+function onListening() {
+	var addr = server.address();
+	var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+	logger.logEvent("INFO", "Web server listening on " + bind );
+}
+ 
+/*
+	Event listener for HTTP server "error" event.
+*/
+function onSecError(error) {
+	if (error.syscall !== 'listen') {
+		throw error;
+	}
+
+	var bind = typeof SECPORT === 'string' ? 'Pipe ' + SECPORT : 'Port ' + SECPORT;
+
+	// handle specific listen errors with friendly messages
+	switch (error.code) {
+		case 'EACCES':
+			logger.logEvent("ERROR", "Using port " + bind + ' requires elevated privileges' );
+			process.exit(1);
+			break;
+		case 'EADDRINUSE':
+			logger.logEvent("ERROR", "Port " + bind + ' is already in use');
+			process.exit(1);
+			break;
+		default:
+			throw error;
+	}
+}
+
+/*
+	Event listener for HTTP server "listening" event.
+*/
+function onSecListening() {
+	var addr = httpsServer.address();
+	var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+	logger.logEvent("INFO", "Web https server listening on " + bind );
+}
+global.transport = nodemailer.createTransport({
+  host: emailHost,
+  port: emailPort,
+  auth: {
+    user: emailAuth,
+    pass: emailSecret
+  }
+});
+
+//var server = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+dbMigrate = async () => {
+    try {
+		await dbase.migrate(dbase.sqlDB);
+    }
+	catch (ex) {
+		logger.logEvent("error", "dbMigrate message: " + ex.message);
+    }
+}
+
+dbConnect = async () => {
+    try {
+		dbase.sqlDB = await dbase.connect();
+		let res = await dbMigrate(dbase.sqlDB);
+    }
+	catch (ex) {
+		logger.logEvent("error", "dbConnect message: " + ex.message);
+    }
+}
+
+
+dbConnect();
+
+
+/*
+server.listen(PORT);
+server.on('error', onError);
+server.on('listening', onListening);
+*/
+
+httpsServer.listen(SECPORT);
+httpsServer.on('error', onSecError);
+httpsServer.on('listening', onSecListening);
+
+
+ 
