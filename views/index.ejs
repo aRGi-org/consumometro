@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+
+	<head>
+		<%- include(appBasePath + 'views/parts/head.ejs'); %>
+	</head>
+    <body>
+		<div class="container-fluid">
+			<%- include(appBasePath + 'views/parts/header.ejs'); %>
+			<div class="row argi_content">
+				<div class="col">
+					<div class="row pl-3 pr-3 argi_content_header">
+						<div class="col">
+						</div>
+					</div>
+					<div class="row pl-3 pr-3 ">
+						<div class="col">
+							<div class="row pt-3 justify-content-center argi_content" id="source">
+								<div class="jumbotron">
+									<h1 class="display-4">aRGi CONSUMOMETRO</h1>
+									<p class="lead"><%= LANG.str00000001 %></p>
+									<hr class="my-4">
+									<p>CONSUMOMETRO</p>
+									<p><%= LANG.str00000180 %></p>
+									<p><%= LANG.str00000181 %></p>
+									<p><%= LANG.str00000182 %></p>
+									<p><%= LANG.str00000183 %></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+					</div>
+				</div>
+			</div>
+			<%- include(appBasePath + 'views/parts/footer'); %>
+		</div>
+	</body>
+	<%- include(appBasePath + 'views/parts/libs'); %>
+	<script type="text/javascript" src="/js/aRGi_index.js"></script>
+</html>

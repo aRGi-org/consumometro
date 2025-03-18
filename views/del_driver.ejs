@@ -1,0 +1,9 @@
+<%- include(appBasePath + 'views/parts/mail_header'); %>
+
+<div style="margin: 0 auto; max-width: 720px; padding: 30px 0; font-family: Arial">
+  <h3><%= pageData.LANG.str00000120 %> <%= pageData.contact.toName %> <%= pageData.contact.toLast %></h3>
+  <p><%= pageData.LANG.str00000121 %> <%= pageData.contact.fromName %> <%= pageData.contact.fromLast %> <%= pageData.LANG.str00000122 %> <%= pageData.contact.marca %> <%= pageData.contact.modello %> (<%= pageData.contact.targa %>)</p>
+  <p><%= pageData.LANG.str00000127 %></p>
+</div>
+
+<%- include(appBasePath + 'views/parts/mail_footer'); %>

@@ -1,0 +1,18 @@
+<%- include(appBasePath + 'views/parts/mail_header'); %>
+
+<div style="margin: 0 auto; max-width: 720px; padding: 30px 0; font-family: Arial">
+  <h3><%= pageData.LANG.str00000120 %> <%= pageData.contact.to %></h3>
+  <p><%= pageData.LANG.str00000250 %> <%= pageData.contact.name %> (<%= pageData.contact.from %>) <%= pageData.LANG.str00000251 %></p>
+  <p><%= pageData.LANG.str00000252 %></p>
+  <p><%= pageData.LANG.str00000253 %></p>
+  <p><%= pageData.LANG.str00000139 %> <a href="<%= pageData.server.protocol %>://<%= pageData.server.host %>/contactus"><%= pageData.LANG.str00000140 %></a> <%= pageData.LANG.str00000141 %></p>
+  <div style="margin-top : 20px">
+    <a style="background: #4b2179; color: #e2d4f0 !important; padding: 10px 10px; border: 2px solid #e2d4f0" href="<%= pageData.server.protocol %>://<%= pageData.server.host %>/contactus">
+	  <span style="color: #e2d4f0 !important;">
+	    <%= pageData.LANG.str00000005 %>
+	  </span>
+	</a>
+  </div>
+</div>
+
+<%- include(appBasePath + 'views/parts/mail_footer'); %>

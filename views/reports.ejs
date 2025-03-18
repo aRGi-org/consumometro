@@ -1,0 +1,8 @@
+<%- include(appBasePath + 'views/parts/mail_header'); %>
+
+<div style="margin: 0 auto; max-width: 720px; padding: 30px 0; font-family: Arial">
+  <h3><%= pageData.LANG.str00000120 %> <%= pageData.cover.destinatario %></h3>
+  <p><%= pageData.LANG.str00000176 %> <%= pageData.cover.periodostr %> <%= pageData.LANG.str00000177 %>: <%= pageData.cover.marca %> <%= pageData.cover.modello %> (<%= pageData.cover.targa %>)</p>
+</div>
+
+<%- include(appBasePath + 'views/parts/mail_footer'); %>

@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="it">
+
+	<head>
+		<%- include(appBasePath + 'views/parts/m-head.ejs'); %>
+        <link href="/css/argi-logon.css" rel="stylesheet">
+	</head>
+    <body>
+		<div class="container-fluid">
+			<div class="row pl-3 pr-3 row justify-content-center">
+				<div class="col-xl-3 col-lg-6 col-md-6 col-sm-8 col-xs-12 align-self-center">
+					<div class="col text-argi-btn text-center bg-argi-gre mt-2 pb-2 pt-2 border border-success rounded"><%= LANG.str00000014 %></div> 
+					<div id="joinForm" class="col d-none text-argi-btn text-center mt-2 pb-2 pt-2 border border-success rounded bg-light">
+					</div> 
+					<div class="form-row justify-content-center"> 
+						<div class="form-group col">
+							<button id="SAV" class="d-none btn mt-1 btn-block btn-success"><%= LANG.str00000134 %></button>
+						</div>
+					</div> 
+					<div id="secretForm" class="col d-none text-argi-btn text-center mt-2 pb-2 pt-2 border border-success rounded bg-light">
+					</div> 
+					<div class="form-row justify-content-center"> 
+						<div class="form-group col">
+							<button id="PWD" class="d-none btn btn-block mt-1 btn-warning"><%= LANG.str00000132 %></button>
+						</div>
+					</div> 
+					<div class="form-row justify-content-center"> 
+						<div class="form-group col">
+							<button id="OUTBACK" class="d-none btn btn-block mt-1 btn-primary"><%= LANG.str00000022 %></button>
+						</div>
+					</div> 
+				</div>
+			</div>
+		<%- include(appBasePath + 'views/parts/footer.ejs'); %>
+		</div>
+	</body>
+	<%- include(appBasePath + 'views/parts/m-libs'); %>
+	<script type="text/javascript" src="/js/aRGi_m_profile.js"></script>
+</html>

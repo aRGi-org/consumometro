@@ -1,0 +1,68 @@
+			<div class="row argi_head shadow-argi bg-light rounded pt-2">
+				<div class="col">
+					<nav class="navbar navbar-expand-md navbar-light bg-light">
+						<span class="navbar-brand">
+							<img src="/media/images/consumometro.png" width="50" height="30" class="d-inline-block align-top" alt="">
+							Consumometro								
+						</span>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarToggler">						
+							<ul class="nav navbar-nav mr-auto">
+								<%if (ACTIVE == 1) { %>
+									<li class="mr-2 nav-item active">
+								<% } else { %>
+									<li class="mr-2 nav-item">
+								<% } %>
+									<a class="mr-2 nav-link text-dark" href="/app/index"><b><i class="fas fa-home fa-2x argi_middle_align mr-1"></i>Home</b></a>
+								</li>	
+								<%if (DATA.data.role == 0) { %>
+								<%if (ACTIVE == 2) { %>
+									<li class="mr-2 nav-item active">
+								<% } else { %>
+									<li class="mr-2 nav-item">
+								<% } %>
+									<a class="mr-2 nav-link text-dark" href="/app/utenti"><b><i class="fas fa-user fa-2x argi_middle_align mr-1"></i><%= LANG.str00000219 %></b></a>
+								</li>	
+								<%if (ACTIVE == 3) { %>
+									<li class="mr-2 nav-item active">
+								<% } else { %>
+									<li class="mr-2 nav-item">
+								<% } %>
+									<a class="mr-2 nav-link text-dark" href="/app/auto"><b><i class="fas fa-car fa-2x argi_middle_align mr-1"></i><%= LANG.str00000220 %></b></a>
+								</li>	
+								<% } %>
+								<%if (ACTIVE == 4) { %>
+									<li class="nav-item dropdown active">
+								<% } else { %>
+									<li class="nav-item dropdown">
+								<% } %>
+									<a class="mr-2 nav-link dropdown-toggle text-dark" data-toggle="dropdown" role="button" href="#"><b><i class="fas fa-user-circle fa-2x argi_middle_align mr-1"></i><%= LANG.str00000014 %><span class="caret"></span></b></a>
+									<div class="dropdown-menu dropdown-menu-right col-xl2">
+										<span class="dropdown-item"><%= LANG.str00000205 %>: <strong><%= DATA.data.userid %></strong></span>
+										<span class="dropdown-item"><%= LANG.str00000203 %>: <strong><%= DATA.data.nome %> <%= DATA.data.cognome %></strong></span>
+										<span class="dropdown-item"><%= LANG.str00000204 %>: <strong><%= DATA.data.emailu %></strong></span>
+										<span class="dropdown-item"><%= LANG.str00000184 %>: <strong>
+										
+										<%if (DATA.data.role == 0) { %>
+											<%= LANG.str00000191 %>
+										<% } else { %>
+											<%if (DATA.data.role == 100) { %>
+												<%= LANG.str00000192 %>
+											<% } else { %>
+												<%= LANG.str00000166 %>
+											<% } %>
+										<% } %>
+										</strong></span>
+										<div class="dropdown-divider"></div>
+										<button type="submit" name="submit" onClick="document.location = '/app/secret';" class="btn btn-block btn-argi-yello"><%= LANG.str00000132 %></button>
+										<div class="dropdown-divider"></div>
+										<button type="submit" name="submit" onClick="document.location = '/app/logout';" class="btn btn-block btn-argi"><%= LANG.str00000011 %></button>
+									</div>
+								</li>	
+							</ul>
+						</div>
+					</nav>							
+				</div>
+			</div>

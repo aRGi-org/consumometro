@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it">
+
+	<head>
+		<%- include(appBasePath + 'views/parts/m-head.ejs'); %>
+        <link href="/css/argi-logon.css" rel="stylesheet">
+	</head>
+    <body>
+		<div class="container-fluid">
+			<div class="row pl-3 pr-3 row justify-content-center">
+				<div class="col-xl-3 col-lg-6 col-md-6 col-sm-8 col-xs-12 align-self-center">
+					<div class="col text-argi-btn text-center bg-argi-gre mt-1 p-2 border border-success rounded"><%= LANG.str00000008 %></div> 
+					<div id="carlist" class="form-row justify-content-center"> 
+					</div> 
+					<div class="form-row justify-content-center"> 
+						<div class="form-group col">
+							<button id="OUTBACK" class="d-none btn btn-block mt-1 btn-primary"><%= LANG.str00000022 %></button>
+						</div>
+					</div> 
+					<div class="form-row"> 
+						<div id="err-msg" class="col d-none mt-1 p-1 alert-danger rounded border border-danger"> 
+						</div> 
+					</div> 
+				</div>
+			</div>
+			<div class="row argi_tail pt-2">
+				<div class="col">
+					<h1>&nbsp;</h1>
+				</div>
+			</div>
+		<%- include(appBasePath + 'views/parts/footer.ejs'); %>
+		</div>
+	</body>
+	<%- include(appBasePath + 'views/parts/m-libs'); %>
+	<script type="text/javascript" src="/js/aRGi_m_consumi.js"></script>
+</html>

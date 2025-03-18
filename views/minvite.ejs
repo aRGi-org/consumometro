@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+
+	<head>
+		<%- include(appBasePath + 'views/parts/m-head.ejs'); %>
+        <link href="/css/argi-logon.css" rel="stylesheet">
+	</head>
+    <body>
+		<div class="container-fluid">
+			<div class="row pl-3 pr-3 row justify-content-center">
+				<div class="col-xl-3 col-lg-6 col-md-6 col-sm-8 col-xs-12 align-self-center">
+					<div class="col text-argi-btn text-center bg-argi-gre mt-2 pb-2 pt-2 border border-success rounded"><%= LANG.str00000246 %></div> 
+					<div id="inviteForm" class="col text-argi-btn text-center mt-2 pb-2 pt-2 border border-success rounded bg-light">
+					</div> 
+					<div class="form-row mt-2 pb-2 pt-2 justify-content-center"> 
+						<div class="form-group col">
+							<button id="INVITE" class="btn btn-block btn-success"><%= LANG.str00000247 %></button>
+						</div>
+					</div> 
+					<div class="form-row mt-2 pb-2 pt-2 justify-content-center"> 
+						<div class="form-group col">
+							<button id="OUTBACK" class="btn btn-block btn-primary"><%= LANG.str00000022 %></button>
+						</div>
+					</div> 
+				</div>
+			</div>
+		</div>
+	</body>
+	<%- include(appBasePath + 'views/parts/m-libs'); %>
+	<script type="text/javascript" src="/js/aRGi_m_invite.js"></script>
+</html>

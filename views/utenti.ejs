@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="it">
+
+	<head>
+		<%- include(appBasePath + 'views/parts/head.ejs'); %>
+	</head>
+    <body>
+	<%if (DATA.data.role != 0) { %>
+		<div class="container-fluid">
+			<%- include(appBasePath + 'views/parts/header.ejs'); %>
+				<div class="row pt-4 argi_content">
+					<div class="col-4 offset-4 alert alert-danger">
+						<strong><%= LANG.str00000215 %>:</strong> <%= LANG.str00000221 %>
+					</div>
+				</div>
+			<%- include(appBasePath + 'views/parts/footer'); %>
+		</div>
+	</body>
+	<%- include(appBasePath + 'views/parts/libs'); %>
+	<% } else { %>
+		<div class="container-fluid">
+			<%- include(appBasePath + 'views/parts/header.ejs'); %>
+				<div class="row argi_content">
+					<div class="col">
+						<div class="row pl-3 pr-3 argi_content_header">
+							<div class="col">
+							</div>
+						</div>
+						<div class="row argi_content argi_content_up">
+							<div class="col">
+								<div class="row pl-3 pr-3 pt-4 argi_content_heref ">
+									<div class="col">
+										<div class="row justify-content-center argi_content argi_content_heref" id="source_u">
+											<div id="usersTable"></div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col mt-2 argi_selection_list_commands argi_commands_u argi_content_heref">
+										<button data-action="ADD" type="button" class="btn btn-success"><%= LANG.str00000060 %></button>
+										<button data-action="MOD" type="button" class="btn btn-primary"><%= LANG.str00000061 %></button>
+										<button data-action="DEL" type="button" class="btn btn-danger"><%= LANG.str00000062 %></button>
+									</div>
+									<div class="col mt-2 argi_selection_list_commands argi_commands_u text-right">
+										<button data-action="PWD" type="button" class="btn btn-warning"><%= LANG.str00000132 %></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<%- include(appBasePath + 'views/parts/footer'); %>
+		</div>
+	</body>
+	<%- include(appBasePath + 'views/parts/libs'); %>
+	<script type="text/javascript" src="/js/aRGi_utenti.js"></script>
+	<% } %>
+</html>
